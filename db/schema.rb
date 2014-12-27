@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141221033919) do
+ActiveRecord::Schema.define(version: 20141227212759) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20141221033919) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "oauth_expires_at"
+    t.string   "profile_image_url"
   end
 
 end
