@@ -52,3 +52,7 @@ end
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
 gem "koala", "~> 1.10.0rc" # Facebook API 
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+gem 'yelp', '~> 2.0.4'

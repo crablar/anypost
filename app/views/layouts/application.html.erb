@@ -13,12 +13,14 @@
 	    Welcome <strong><%= current_user.name %></strong>!
 	    <%= image_tag(current_user.profile_image_url)%>
 	    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-	    <%= current_user.oauth_token %>
 	  <% else %>
 	    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
 	  <% end %>
 	</div>
-
+	
+	<%= fb_city %>
+	<%= yelp_search %>
+	
 <div
   class="fb-like"
   data-share="true"

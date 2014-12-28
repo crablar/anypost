@@ -6,12 +6,19 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
-  def get_fb_info(param)
+  #facebook helpers
+  def fb_city
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    facebook = Koala::Facebook::API.new(@current_user.oauth_token)
-    facebook.get_object("me?fields=#{param}")
+    graph = Koala::Facebook::API.new(@current_user.oauth_token)
+    graph.get_connections("me", "likes")
+    city_id = graph.get_object("me")["location"]["name"]
   end
   
-  helper_method :current_user
-  helper_method :user_stuff
+  #yelp helpers
+  def yelp_search
+    parameters = { term: params[:term], limit: 16 }
+    Yelp.client.search(fb_city, parameters).as_json
+  end
+  
+  helper_method :current_user, :fb_city, :yelp_search
 end
