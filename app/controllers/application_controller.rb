@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   end
   
   #facebook helpers
-  def fb_city
+  def get_user_city
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     graph = Koala::Facebook::API.new(@current_user.oauth_token)
     graph.get_connections("me", "likes")
@@ -15,10 +15,23 @@ class ApplicationController < ActionController::Base
   end
   
   #yelp helpers
-  def yelp_search
+  def get_businesses_in_city
     parameters = { term: params[:term], limit: 16 }
-    Yelp.client.search(fb_city, parameters).as_json
+    json = Yelp.client.search(get_user_city, parameters).as_json
+    json['hash']['businesses']
   end
   
-  helper_method :current_user, :fb_city, :yelp_search
+  def get_random_pair_of_businesses
+    businesses = get_businesses_in_city
+    random = rand(businesses.length)
+    biz1 = businesses[random]
+    businesses.delete(random)
+    random = rand(businesses.length)
+    biz2 = businesses[random]
+    return biz1, biz2
+  end
+  
+  
+  
+  helper_method :current_user, :get_user_city, :get_businesses_in_city, :get_random_pair_of_businesses
 end
