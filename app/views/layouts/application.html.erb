@@ -18,8 +18,15 @@
 	  <% end %>
 	</div>
 	
-	<%= get_random_pair_of_businesses %>
-	
+	<div id="decision">
+		<h1>Which is better?</h1>
+		<% get_random_pair_of_businesses.each do |business| %>
+			<%= button_to business['name'], '/', :method => :get%>
+			<%= image_tag(business['image_url'])%>
+			</br></br>
+		<% end %>
+	</div>
+		
 <div
   class="fb-like"
   data-share="true"

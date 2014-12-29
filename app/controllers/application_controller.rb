@@ -31,7 +31,5 @@ class ApplicationController < ActionController::Base
     return biz1, biz2
   end
   
-  
-  
-  helper_method :current_user, :get_user_city, :get_businesses_in_city, :get_random_pair_of_businesses
+  helper_method :current_user, :get_user_city, :get_businesses_in_city, :get_random_pair_of_businesses, :choose_business
 end
