@@ -13,12 +13,7 @@
 	    Welcome <strong><%= current_user.name %></strong>!
 	    <%= image_tag(current_user.profile_image_url)%>
 	    <%= link_to "Sign out", signout_path, id: "sign_out" %>
-	  <% else %>
-	    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
-	  <% end %>
-	</div>
-	
-	<div id="decision">
+	    	<div id="decision">
 		<h1>Which is better?</h1>
 		<% get_random_pair_of_businesses.each do |business| %>
 			<%= button_to business['name'], '/', :method => :get%>
@@ -26,6 +21,12 @@
 			</br></br>
 		<% end %>
 	</div>
+	  <% else %>
+	    <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+	  <% end %>
+	</div>
+	
+
 		
 <div
   class="fb-like"
